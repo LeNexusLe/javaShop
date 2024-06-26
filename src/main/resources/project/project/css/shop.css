@@ -1,0 +1,17 @@
+#upperPanel {
+    -fx-background-color: #2281ff;
+}
+
+#lowerPanel {
+    -fx-background-color: white;
+}
+
+#styleButton {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+}
+
+#refreshButton {
+    -fx-background-color: transparent;
+    -fx-text-fill: #00005d;
+}

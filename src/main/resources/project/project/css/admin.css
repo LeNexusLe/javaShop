@@ -1,0 +1,8 @@
+#upperPanel {
+    -fx-background-color: #2281ff;
+}
+#leftPanel {
+    -fx-background-color: white;
+    -fx-border-color: #dbdbdb;
+    -fx-border-width: 0 5px 0 0;
+}
