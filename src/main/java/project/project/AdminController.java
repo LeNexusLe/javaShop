@@ -60,6 +60,9 @@ public class AdminController implements Initializable {
     private TableColumn<User, String> phoneCol;
 
     @FXML
+    private TableColumn<User, Integer> balanceCol;
+
+    @FXML
     private TableColumn<User, String> roleCol;
 
     @FXML
@@ -93,7 +96,7 @@ public class AdminController implements Initializable {
     private TableColumn<UserCart, Integer> idProductCartCol;
 
     @FXML
-    private TableColumn<?, ?> amountCol;
+    private TableColumn<UserCart, Integer> amountCol;
 
 
 
@@ -155,6 +158,7 @@ public class AdminController implements Initializable {
                         resultSet.getString("role"),
                         resultSet.getString("password"),
                         resultSet.getString("pesel"),
+                        resultSet.getInt("balance"),
                         resultSet2.getString("city"),
                         resultSet2.getString("address"),
                         resultSet2.getString("phone_number")
@@ -176,7 +180,7 @@ public class AdminController implements Initializable {
         cityCol.setCellValueFactory(new PropertyValueFactory<>("city"));
         addressCol.setCellValueFactory(new PropertyValueFactory<>("address"));
         phoneCol.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
-
+        balanceCol.setCellValueFactory(new PropertyValueFactory<>("balance"));
     }
 
     @FXML
@@ -275,10 +279,11 @@ public class AdminController implements Initializable {
                 String city = cityCol.getCellData(index).toString();
                 String address = addressCol.getCellData(index).toString();
                 String phoneNumber = phoneCol.getCellData(index).toString();
+                int balance = balanceCol.getCellData(index);
 
                 AddUserController addUserController = fxmlLoader.getController();
                 addUserController.setUpdate(true);
-                addUserController.setTextField(pesel, name, password, role, city, address, phoneNumber);
+                addUserController.setTextField(pesel, name, password, role, city, address, phoneNumber,balance);
                 Parent root = fxmlLoader.getRoot();
                 Stage stage = new Stage();
                 stage.setScene(new Scene(root));

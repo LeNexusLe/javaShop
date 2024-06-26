@@ -36,6 +36,9 @@ public class AddUserController {
     private TextField phoneInput;
 
     @FXML
+    private TextField balanceInput;
+
+    @FXML
     private TextField roleInput;
 
     Connection con = null;
@@ -43,11 +46,12 @@ public class AddUserController {
     ResultSet resultSet = null;
     User user = null;
     loginController loginController = new loginController();
+    AlertStyleController alert = new AlertStyleController();
     private boolean update;
     String sql = null;
     String sql2 = null;
     String id = null;
-    void setTextField(String pesel,String name,String password,String role,String city,String address,String phone) {
+    void setTextField(String pesel,String name,String password,String role,String city,String address,String phone,int balance) {
         peselInput.setDisable(true);
         id = pesel;
         peselInput.setText(pesel);
@@ -57,6 +61,7 @@ public class AddUserController {
         cityInput.setText(city);
         addressInput.setText(address);
         phoneInput.setText(phone);
+        balanceInput.setText(String.valueOf(balance));
     }
 
     void setUpdate(boolean b) {
@@ -67,11 +72,11 @@ public class AddUserController {
     private void getQuery() {
 
         if (update == false) {
-            sql = "INSERT INTO user (pesel, username, password, role) VALUES (?,?,?,?)";
+            sql = "INSERT INTO user (pesel, username, password, role,balance) VALUES (?,?,?,?,?)";
             sql2 = "INSERT INTO user_information (pesel, city, address, phone_number) VALUES (?,?,?,?)";
 
         }else{
-            sql = "UPDATE user SET username = ?, password = ?, role = ? WHERE pesel = '"+id+"'";
+            sql = "UPDATE user SET username = ?, password = ?, role = ?, balance = ? WHERE pesel = '"+id+"'";
             sql2 = "UPDATE user_information SET city = ?, address = ?, phone_number = ? WHERE pesel = '"+id+"'";
 
         }
@@ -79,7 +84,7 @@ public class AddUserController {
     }
 
 
-    private void insert(String pesel, String name, String password, String role, String city, String address, String phone) {
+    private void insert(String pesel, String name, String password, String role, String city, String address, String phone, int balance) {
 
         try {
             if(update == false){
@@ -88,6 +93,7 @@ public class AddUserController {
                 preparedStatement.setString(2, name);
                 preparedStatement.setString(3, password);
                 preparedStatement.setString(4, role);
+                preparedStatement.setInt(5, balance);
                 preparedStatement.execute();
                 preparedStatement = con.prepareStatement(sql2);
                 preparedStatement.setString(1, pesel);
@@ -95,17 +101,20 @@ public class AddUserController {
                 preparedStatement.setString(3, address);
                 preparedStatement.setString(4, phone);
                 preparedStatement.execute();
+                alert.notificationInfo(" Sukces!", "Udało się stworzyć użytkownika");
             }else {
-                System.out.println(role);
                 preparedStatement = con.prepareStatement(sql);
                 preparedStatement.setString(1, name);
                 preparedStatement.setString(2, password);
                 preparedStatement.setString(3, role);
+                preparedStatement.setInt(4, balance);
                 preparedStatement.execute();
+                preparedStatement = con.prepareStatement(sql2);
                 preparedStatement.setString(1, city);
                 preparedStatement.setString(2, address);
                 preparedStatement.setString(3, phone);
                 preparedStatement.execute();
+                alert.notificationInfo(" Sukces!", "Udało się zedytować użytkownika");
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -125,14 +134,21 @@ public class AddUserController {
         String city = cityInput.getText();
         String address = addressInput.getText();
         String phone = phoneInput.getText();
+        int balance = 0;
+        try {
+            balance = Integer.parseInt(balanceInput.getText());
+            if (!loginController.checkValue(name,password,pesel,city,address,phone,update)) {
 
-        if (!loginController.checkValue(name,password,pesel,city,address,phone,update)) {
-
-        }else {
-            getQuery();
-            insert(pesel, name, password, role, city, address, phone);
-            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-            stage.close();
+            }else if (balance >= 0) {
+                getQuery();
+                insert(pesel, name, password, role, city, address, phone, balance);
+                Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+                stage.close();
+            }else {
+                alert.notificationError(" Błąd!", " Za mała wartość salda");
+            }
+        } catch (NumberFormatException ex) {
+            alert.notificationError(" Błąd!", "Za duża wartość salda lub saldo zawiera znaki");
         }
     }
 

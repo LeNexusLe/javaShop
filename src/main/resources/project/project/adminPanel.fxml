@@ -14,13 +14,14 @@
          <children>
             <TableView fx:id="userTable" layoutX="36.0" layoutY="93.0" prefHeight="489.0" prefWidth="723.0" stylesheets="@css/main.css">
               <columns>
-                <TableColumn fx:id="peselCol" prefWidth="138.0" text="Pesel" />
-                <TableColumn fx:id="nameCol" prefWidth="112.0" text="Nazwa" />
-                  <TableColumn fx:id="passwordCol" prefWidth="99.0" text="Hasło" />
-                  <TableColumn fx:id="roleCol" minWidth="7.0" prefWidth="52.0" text="Rola" />
-                  <TableColumn fx:id="cityCol" minWidth="0.0" prefWidth="67.0" text="Miasto" />
-                  <TableColumn fx:id="addressCol" prefWidth="108.0" text="Adres" />
-                  <TableColumn fx:id="phoneCol" prefWidth="146.0" text="Nr. Telefonu" />
+                <TableColumn fx:id="peselCol" prefWidth="108.0" text="Pesel" />
+                <TableColumn fx:id="nameCol" prefWidth="116.0" text="Nazwa" />
+                  <TableColumn fx:id="passwordCol" prefWidth="89.0" text="Hasło" />
+                  <TableColumn fx:id="roleCol" minWidth="7.0" prefWidth="54.0" text="Rola" />
+                  <TableColumn fx:id="cityCol" minWidth="0.0" prefWidth="101.0" text="Miasto" />
+                  <TableColumn fx:id="addressCol" prefWidth="73.0" text="Adres" />
+                  <TableColumn fx:id="phoneCol" prefWidth="101.0" text="Nr. Telefonu" />
+                  <TableColumn fx:id="balanceCol" prefWidth="79.0" text="Saldo" />
               </columns>
             </TableView>
             <Button id="styleButton" fx:id="adminAddButton" layoutX="47.0" layoutY="50.0" mnemonicParsing="false" onMouseClicked="#getAddView" prefHeight="25.0" prefWidth="73.0" stylesheets="@css/main.css" text="Dodaj">

@@ -12,7 +12,7 @@ public class AlertStyleController {
         alert.setContentText(text);
         DialogPane dialogPane = alert.getDialogPane();
         dialogPane.getStylesheets().add(
-                getClass().getResource("main.css").toExternalForm());
+                getClass().getResource("css/main.css").toExternalForm());
         dialogPane.getStyleClass().add("alert");
         alert.showAndWait();
     }
@@ -22,7 +22,7 @@ public class AlertStyleController {
         alert.setContentText(text);
         DialogPane dialogPane = alert.getDialogPane();
         dialogPane.getStylesheets().add(
-                getClass().getResource("main.css").toExternalForm());
+                getClass().getResource("css/main.css").toExternalForm());
         dialogPane.getStyleClass().add("alert");
         alert.showAndWait();
     }
@@ -36,7 +36,7 @@ public class AlertStyleController {
         alert.setContentText(text);
         DialogPane dialogPane = alert.getDialogPane();
         dialogPane.getStylesheets().add(
-                getClass().getResource("main.css").toExternalForm());
+                getClass().getResource("css/main.css").toExternalForm());
         dialogPane.getStyleClass().add("alert");
 
         Optional<ButtonType> option = alert.showAndWait();

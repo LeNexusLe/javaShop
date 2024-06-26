@@ -52,7 +52,7 @@ public class loginController {
         root = FXMLLoader.load(getClass().getResource("register.fxml"));
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root, 1020, 590);
-        scene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("css/main.css").toExternalForm());
         stage.setScene(scene);
         stage.show();
     }
@@ -60,7 +60,7 @@ public class loginController {
         root = FXMLLoader.load(getClass().getResource("login.fxml"));
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root, 1020, 590);
-        scene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("css/main.css").toExternalForm());
         stage.setScene(scene);
         stage.show();
     }
@@ -120,19 +120,20 @@ public class loginController {
                     alert.notificationError(" Bład!","Wprowadzono złe dane");
                 }else {
                     String pesel = resultSet.getString("pesel");
-                    user = new User(name,pesel,userPassword);
+                    int balance = resultSet.getInt("balance");
+                    user = new User(name,pesel,userPassword,balance);
                     if(isAdmin(pesel)) {
                         root = FXMLLoader.load(getClass().getResource("adminPanel.fxml"));
                         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
                         scene = new Scene(root, 1220, 750);
-                        scene.getStylesheets().add(getClass().getResource("admin.css").toExternalForm());
+                        scene.getStylesheets().add(getClass().getResource("css/admin.css").toExternalForm());
                         stage.setScene(scene);
                         stage.show();
                     } else {
                         root = FXMLLoader.load(getClass().getResource("shopPanel.fxml"));
                         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
                         scene = new Scene(root, 1220, 750);
-                        scene.getStylesheets().add(getClass().getResource("shop.css").toExternalForm());
+                        scene.getStylesheets().add(getClass().getResource("css/shop.css").toExternalForm());
                         stage.setScene(scene);
                         stage.show();
                     }
@@ -188,7 +189,7 @@ public class loginController {
         try {
             Double.parseDouble(userPesel);
             Double.parseDouble(userPhone);
-        } catch (final NumberFormatException e) {
+        } catch (NumberFormatException e) {
             alert.notificationError(" Bład!","Pesel oraz numer telefonu muszą zawierać same cyfry!");
             return false;
         }
@@ -237,7 +238,7 @@ public class loginController {
     }
 
     public void addUserToDatabase(String userName, String userPassword, String userPesel, String userCity, String userAddress, String userPhone) {
-        String sql = "INSERT INTO user (pesel, username, password, role) VALUES (?,?,?,?)";
+        String sql = "INSERT INTO user (pesel, username, password, role, balance) VALUES (?,?,?,?,?)";
         String sql2 = "INSERT INTO user_information (pesel, city, address, phone_number) VALUES (?,?,?,?)";
         try {
             preparedStatement = con.prepareStatement(sql);
@@ -245,6 +246,7 @@ public class loginController {
             preparedStatement.setString(2, userName);
             preparedStatement.setString(3, userPassword);
             preparedStatement.setString(4, "user");
+            preparedStatement.setInt(5, 0);
             int addedRows = preparedStatement.executeUpdate();
             if(addedRows > 0) {
                 preparedStatement = con.prepareStatement(sql2);

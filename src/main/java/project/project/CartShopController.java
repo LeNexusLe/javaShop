@@ -8,6 +8,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.control.Label;
 
 import java.net.URL;
 import java.sql.Connection;
@@ -30,6 +31,12 @@ public class CartShopController  implements Initializable {
 
     @FXML
     private TableColumn<UserCart, Integer> fullPriceCol;
+
+    @FXML
+    private Label balanceLbl;
+
+    @FXML
+    private Label cartSumLbl;
 
 
     String sql = null;
@@ -63,6 +70,8 @@ public class CartShopController  implements Initializable {
 
     private void refreshTable() {
         UserCartList.clear();
+        balanceLbl.setText(String.valueOf(user.balance) + " PLN");
+        cartSumLbl.setText(String.valueOf(sumProduct() + " PLN"));
         sql = "SELECT * FROM shopping_cart WHERE pesel = '"+user.pesel+"'";
         try {
             preparedStatement = con.prepareStatement(sql);
@@ -98,6 +107,23 @@ public class CartShopController  implements Initializable {
             }
         }
     }
+
+    private int sumProduct(){
+        sql = "SELECT * FROM shopping_cart WHERE pesel = ?";
+        int sum = 0;
+        try {
+            preparedStatement = con.prepareStatement(sql);
+            preparedStatement.setString(1, user.pesel);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next() == true) {
+                sum = sum + resultSet.getInt("full_price");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return sum;
+    }
+
 
     private boolean checkAvalible(){
         sql = "SELECT * FROM shopping_cart WHERE pesel = ?";
@@ -149,13 +175,20 @@ public class CartShopController  implements Initializable {
 
     @FXML
     void payBtn(MouseEvent event) {
-        if(checkAvalible()){
+        if(checkAvalible() && user.balance >= sumProduct()){
             if(alert.confirmationBox(" Potwierdzenie Zakupu", "Czy na pewno chcesz wszystko kupić?")){
                 try {
+                    int sum = user.balance - sumProduct();
                     deleteProduct();
                     sql = "DELETE FROM shopping_cart WHERE pesel = ?";
                     preparedStatement = con.prepareStatement(sql);
                     preparedStatement.setString(1, user.pesel);
+                    preparedStatement.execute();
+                    sql2 = "UPDATE user SET balance = ? WHERE pesel = ?";
+                    user.balance = sum;
+                    preparedStatement = con.prepareStatement(sql2);
+                    preparedStatement.setInt(1, sum);
+                    preparedStatement.setString(2, user.pesel);
                     preparedStatement.execute();
                     refreshTable();
                 } catch (SQLException e) {

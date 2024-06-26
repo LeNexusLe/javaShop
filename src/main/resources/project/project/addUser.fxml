@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="595.0" prefWidth="425.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.project.AddUserController">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="668.0" prefWidth="425.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.project.AddUserController">
    <children>
       <HBox alignment="CENTER" prefHeight="58.0" prefWidth="375.0" style="-fx-background-color: #2281ff;;">
          <children>
@@ -86,6 +86,16 @@
          </VBox.margin>
       </Label>
       <TextField fx:id="phoneInput" layoutX="10.0" layoutY="325.0" prefHeight="31.0" prefWidth="349.0">
+         <VBox.margin>
+            <Insets left="20.0" right="20.0" top="10.0" />
+         </VBox.margin>
+      </TextField>
+      <Label text="Saldo" textFill="#00005d">
+         <VBox.margin>
+            <Insets top="10.0" />
+         </VBox.margin>
+      </Label>
+      <TextField fx:id="balanceInput" prefHeight="31.0" prefWidth="349.0">
          <VBox.margin>
             <Insets left="20.0" right="20.0" top="10.0" />
          </VBox.margin>

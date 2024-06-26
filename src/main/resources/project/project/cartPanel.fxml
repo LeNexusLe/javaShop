@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="502.0" prefWidth="732.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.project.CartShopController">
+<AnchorPane prefHeight="517.0" prefWidth="732.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.project.CartShopController">
    <children>
       <TableView fx:id="cartTable" layoutX="32.0" layoutY="88.0" prefHeight="327.0" prefWidth="668.0" stylesheets="@css/main.css">
         <columns>
@@ -19,22 +19,42 @@
       </TableView>
       <AnchorPane id="upperPanel" prefHeight="69.0" prefWidth="732.0" stylesheets="@css/shop.css">
          <children>
-            <Label layoutX="238.0" layoutY="17.0" text="Koszyk użytkownika" textFill="WHITE">
+            <Label layoutX="20.0" layoutY="17.0" text="Koszyk " textFill="WHITE">
                <font>
                   <Font name="Ebrima Bold" size="27.0" />
                </font>
             </Label>
+            <Label layoutX="471.0" layoutY="23.0" text="Bilans konta: " textFill="WHITE">
+               <font>
+                  <Font name="Ebrima Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="balanceLbl" layoutX="585.0" layoutY="23.0" prefHeight="23.0" prefWidth="147.0" text="999999999 PLN" textFill="WHITE">
+               <font>
+                  <Font name="Ebrima Bold" size="18.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
-      <Button id="styleButton" layoutX="408.0" layoutY="430.0" mnemonicParsing="false" onMouseClicked="#deleteBtn" prefHeight="48.0" prefWidth="292.0" stylesheets="@css/main.css" text="Usuń wybrane">
+      <Button id="styleButton" layoutX="408.0" layoutY="452.0" mnemonicParsing="false" onMouseClicked="#deleteBtn" prefHeight="48.0" prefWidth="292.0" stylesheets="@css/main.css" text="Usuń wybrane">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button id="styleButton" layoutX="32.0" layoutY="430.0" mnemonicParsing="false" onMouseClicked="#payBtn" prefHeight="48.0" prefWidth="292.0" stylesheets="@css/main.css" text="Zapłać teraz!">
+      <Button id="styleButton" layoutX="32.0" layoutY="452.0" mnemonicParsing="false" onMouseClicked="#payBtn" prefHeight="48.0" prefWidth="292.0" stylesheets="@css/main.css" text="Zapłać teraz!">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
+      <Label fx:id="cartSumLbl" contentDisplay="CENTER" layoutX="387.0" layoutY="422.0" prefHeight="23.0" prefWidth="239.0" text="0 PLN" textFill="#00005d">
+         <font>
+            <Font name="Ebrima Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="235.0" layoutY="422.0" text="Wartość koszyka: " textFill="#00005d">
+         <font>
+            <Font name="Ebrima Bold" size="18.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

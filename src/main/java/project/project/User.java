@@ -8,8 +8,9 @@ public class User {
     public String city;
     public String address;
     public String phoneNumber;
+    public int balance;
 
-    public User(String name, String role, String password, String pesel, String city, String address, String phoneNumber) {
+    public User(String name, String role, String password, String pesel,int balance, String city, String address, String phoneNumber) {
         this.name = name;
         this.role = role;
         this.password = password;
@@ -17,11 +18,13 @@ public class User {
         this.city = city;
         this.address = address;
         this.phoneNumber = phoneNumber;
+        this.balance = balance;
     }
-    public User(String name, String pesel, String password) {
+    public User(String name, String pesel, String password, int balance) {
         this.name = name;
         this.pesel = pesel;
         this.password = password;
+        this.balance = balance;
     }
 
     public String getName() {
@@ -78,5 +81,13 @@ public class User {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public int getBalance() {
+        return balance;
+    }
+
+    public void setBalance(int balance) {
+        this.balance = balance;
     }
 }
