@@ -26,7 +26,7 @@
             <Insets top="10.0" />
          </VBox.margin>
       </Label>
-      <TextField fx:id="nameInput" layoutX="10.0" layoutY="85.0" prefHeight="31.0" prefWidth="349.0">
+      <TextField fx:id="nameInput" layoutX="10.0" layoutY="85.0" prefHeight="31.0" prefWidth="349.0" stylesheets="@css/main.css">
          <VBox.margin>
             <Insets left="20.0" right="20.0" top="10.0" />
          </VBox.margin>
@@ -36,7 +36,7 @@
             <Insets top="10.0" />
          </VBox.margin>
       </Label>
-      <TextField fx:id="priceInput" layoutX="10.0" layoutY="133.0" prefHeight="31.0" prefWidth="349.0">
+      <TextField fx:id="priceInput" layoutX="10.0" layoutY="133.0" prefHeight="31.0" prefWidth="349.0" stylesheets="@css/main.css">
          <VBox.margin>
             <Insets left="20.0" right="20.0" top="10.0" />
          </VBox.margin>
@@ -46,7 +46,7 @@
             <Insets top="10.0" />
          </VBox.margin>
       </Label>
-      <TextArea fx:id="descriptionInput" prefHeight="88.0" prefWidth="385.0">
+      <TextArea fx:id="descriptionInput" prefHeight="88.0" prefWidth="385.0" stylesheets="@css/main.css">
          <VBox.margin>
             <Insets left="20.0" right="20.0" top="10.0" />
          </VBox.margin>
@@ -56,7 +56,7 @@
             <Insets top="10.0" />
          </VBox.margin>
       </Label>
-      <TextField fx:id="amountInput">
+      <TextField fx:id="amountInput" stylesheets="@css/main.css">
          <VBox.margin>
             <Insets left="20.0" right="20.0" top="10.0" />
          </VBox.margin>

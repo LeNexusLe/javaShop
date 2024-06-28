@@ -53,6 +53,7 @@ public class AddUserController {
     String id = null;
     void setTextField(String pesel,String name,String password,String role,String city,String address,String phone,int balance) {
         peselInput.setDisable(true);
+        nameInput.setDisable(true);
         id = pesel;
         peselInput.setText(pesel);
         nameInput.setText(name);

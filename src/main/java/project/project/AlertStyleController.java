@@ -8,6 +8,7 @@ public class AlertStyleController {
 
     public void notificationError(String title, String text) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
         alert.setHeaderText(title);
         alert.setContentText(text);
         DialogPane dialogPane = alert.getDialogPane();
@@ -18,6 +19,7 @@ public class AlertStyleController {
     }
     public void notificationInfo(String title, String text) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
         alert.setHeaderText(title);
         alert.setContentText(text);
         DialogPane dialogPane = alert.getDialogPane();
@@ -32,6 +34,7 @@ public class AlertStyleController {
         ButtonType foo = new ButtonType("Potwierdź", ButtonBar.ButtonData.OK_DONE);
         ButtonType bar = new ButtonType("Anuluj", ButtonBar.ButtonData.CANCEL_CLOSE);
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "" ,foo, bar);
+        alert.setTitle(title);
         alert.setHeaderText(title);
         alert.setContentText(text);
         DialogPane dialogPane = alert.getDialogPane();

@@ -75,6 +75,30 @@ public class AddProductController {
 
     }
 
+    private boolean checkValue(String name, String price, String description, String amount){
+        int priceNumber;
+        try {
+            priceNumber = Integer.parseInt(price);
+            Integer.parseInt(amount);
+        } catch (NumberFormatException e) {
+            alert.notificationError(" Bład!","Cena i ilość zawiera litery lub wartość jest za duża!");
+            return false;
+        }
+
+        if(name.length() < 3 || name.length() > 25){
+            alert.notificationError(" Bład!", "Nazwa musi spełniać: 3-25 liter!");
+            return false;
+        } else if(description.length() < 0 || description.length() > 150){
+            alert.notificationError(" Bład!", "Opis musi spełniać: 1-150 liter!");
+            return false;
+        } else if (priceNumber <= 0 ){
+            alert.notificationError(" Bład!", "Cena musi być większa od 0");
+            return false;
+        }
+
+        return true;
+    }
+
     @FXML
     void saveProduct(MouseEvent event) {
         con = ConnectionUtil.conDB();
@@ -83,10 +107,13 @@ public class AddProductController {
         String description = descriptionInput.getText();
         String amount = amountInput.getText();
 
+
         if (name.isEmpty() || price.isEmpty() || description.isEmpty()) {
 
             alert.notificationError(" Bład!","Wszystkie dane muszą być wypełnione!");
-        }else {
+        } else if (!checkValue(name, price, description, amount)){
+
+        } else {
             int priceNumber = Integer.parseInt(price);
             int amountNumber = Integer.parseInt(amount);
             getQuery();

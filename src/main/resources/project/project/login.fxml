@@ -39,9 +39,9 @@
             <Image url="@icon/loginImage.jpg" />
          </image>
       </ImageView>
-      <PasswordField fx:id="passwordInput" layoutX="608.0" layoutY="275.0" prefHeight="31.0" prefWidth="362.0" />
+      <PasswordField fx:id="passwordInput" layoutX="608.0" layoutY="275.0" prefHeight="31.0" prefWidth="362.0" stylesheets="@css/main.css" />
       <Label layoutX="608.0" layoutY="252.0" text="Hasło" textFill="#00005d" />
-      <TextField fx:id="nameInput" layoutX="608.0" layoutY="214.0" prefHeight="31.0" prefWidth="362.0" />
+      <TextField fx:id="nameInput" layoutX="608.0" layoutY="214.0" prefHeight="31.0" prefWidth="362.0" stylesheets="@css/main.css" />
       <Label layoutX="588.0" layoutY="35.0" text="Zaloguj się" textFill="#00005d">
          <font>
             <Font name="Ebrima Bold" size="43.0" />

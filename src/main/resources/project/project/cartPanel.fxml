@@ -46,12 +46,12 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Label fx:id="cartSumLbl" contentDisplay="CENTER" layoutX="387.0" layoutY="422.0" prefHeight="23.0" prefWidth="239.0" text="0 PLN" textFill="#00005d">
+      <Label fx:id="cartSumLbl" contentDisplay="CENTER" layoutX="395.0" layoutY="422.0" prefHeight="23.0" prefWidth="239.0" text="0 PLN" textFill="#00005d">
          <font>
             <Font name="Ebrima Bold" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="235.0" layoutY="422.0" text="Wartość koszyka: " textFill="#00005d">
+      <Label layoutX="243.0" layoutY="422.0" text="Wartość koszyka: " textFill="#00005d">
          <font>
             <Font name="Ebrima Bold" size="18.0" />
          </font>
